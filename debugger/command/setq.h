@@ -16,31 +16,31 @@ along with GNU Make; see the file COPYING.  If not, write to
 the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 Boston, MA 02111-1307, USA.  */
 
-/* Set a variable definition without variable references but don't 
+/* Set a variable definition without variable references but don't
    expand variable references in the value part of psz_string. */
-static debug_return_t 
-dbg_cmd_setq(char *psz_string) 
+static debug_return_t
+dbg_cmd_setq(char *psz_string)
 {
   dbg_cmd_set_var(psz_string, 0);
   return debug_readloop;
 }
 
 static void
-dbg_cmd_setq_init(unsigned int c) 
+dbg_cmd_setq_init(unsigned int c)
 {
   short_command[c].func = &dbg_cmd_setq;
   short_command[c].use  = _("setq VARIABLE VALUE");
-  short_command[c].doc  = 
+  short_command[c].doc  =
     _("Set MAKE variable VARIABLE to VALUE. Variable definitions\n"
-      "\tinside VALUE are not expanded before assignment occurs.");
+      "\tinside VALUE is expanded before assignment occurs."
+"\nSee also 'setqx'.");
 }
 
 
 
-/* 
+/*
  * Local variables:
  * eval: (c-set-style "gnu")
  * indent-tabs-mode: nil
  * End:
  */
-
